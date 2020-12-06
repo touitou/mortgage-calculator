@@ -1,0 +1,15 @@
+{
+  "form.mortgage-amount": "Mortgage Amount",
+  "form.mortgage-amount-error": "Please provide a valid amount",
+  "form.mortgage-rate": "Interest Rate",
+  "form.mortgage-rate-error": "Please provide a valid rate",
+  "form.mortgage-amortization": "Amortization Period",
+  "form.mortgage-amortization-error": "Please provide a valid period",
+  "form.mortgage-frequency": "Payment Frequency",
+  "form.mortgage-frequency-error": "Please provide a valid frequency",
+  "form.mortgage-term": "Term",
+  "form.mortgage-term-error": "Please provide a valid term",
+  "form.calculate": "Calculate",
+  "form.reset": "Reset",
+  "home.title": "Mortgage Calculator"
+}

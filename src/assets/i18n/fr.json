@@ -1,0 +1,10 @@
+{
+  "form.mortgage-amount":  "Montant du Pret Immo",
+  "form.mortgage-rate": "Taux d'Interet",
+  "form.mortgage-amortization": "Duree d'Amortissement",
+  "form.mortgage-frequency": "Frequence de Paiement",
+  "form.mortgage-term": "Terme",
+  "form.calculate": "Calculer",
+  "form.reset": "Reinitialiser",
+  "home.title": "Simulateur Pret Immo"
+}
