@@ -1,0 +1,38 @@
+mat-error ::ng-deep{
+    color: red;
+}
+
+.mat-card{
+  background-color:#cce0ff !important;
+  width: 500px;
+  margin: 0 auto;
+  border-radius: 30px !important;
+}
+
+.mat-raised-button{
+    margin: 10px;
+}
+
+
+.save{
+    background-color: #c2f0c2;
+}
+
+.reset{
+    background-color: #ff9980;
+}
+
+
+.col{
+    padding: 10px 10px 10px 10px;
+}
+
+ ::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color: #3385ff;
+ }
+
+
+.cdk-overlay-container .cdk-overlay-pane{
+   margin-top: 7%;
+   background-color: #3385ff;
+}

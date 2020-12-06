@@ -7,8 +7,6 @@
 
 @import 'themes/default-theme.scss';
 @import 'themes/light-theme.scss';
-@import 'themes/black-theme.scss';
-@import 'themes/nature-theme.scss';
 
 @import 'app/app.component.scss-theme';
 
@@ -18,23 +16,13 @@
 }
 
 .default-theme {
-    @include angular-material-theme($nature-theme);
-    @include custom-components-theme($nature-theme);
+    @include angular-material-theme($light-theme);
+    @include custom-components-theme($light-theme);
 }
 
 .light-theme {
   @include angular-material-theme($light-theme);
   @include custom-components-theme($light-theme);
-}
-
-.black-theme {
-  @include angular-material-theme($black-theme);
-  @include custom-components-theme($black-theme);
-}
-
-.nature-theme {
-  @include angular-material-theme($nature-theme);
-  @include custom-components-theme($nature-theme);
 }
 
 .custom-dialog-container .mat-dialog-container {
