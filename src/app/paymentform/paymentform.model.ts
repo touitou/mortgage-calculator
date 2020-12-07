@@ -1,6 +1,6 @@
 export interface PaymentForm {
-  mortgageAmount: double;
-  mortgageRate: double;
+  mortgageAmount: number;
+  mortgageRate: number;
   mortgageAmort: string;
   mortgageFreq: string;
   mortgageTerm: string;

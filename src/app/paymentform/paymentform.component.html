@@ -11,7 +11,7 @@
 <!--      <ng-container *ngIf="formValueChanges$ | async as updatedForm">
         {{update(updatedForm)}}
       </ng-container>-->
-      <form [formGroup]="form" (ngSubmit)="submit()">
+      <form [formGroup]="form" (ngSubmit)="submit(stepper)">
         <div class="row justify-content-center">
           <div class="col-md-8">
             <mat-card>
@@ -37,10 +37,10 @@
               </div>
               <div class="row">
                 <img src = '../assets/images/mortgage-amort.png' width ="32px" height="32px"/>
-                <mat-form-field class="input-row" >
+                <mat-form-field class="input-row"  appearance="fill">
                 <mat-label>{{ 'form.mortgage-amortization' | translate }}</mat-label>
-                <mat-select formControlName="amort" style="max-width:300px;border:none" required>
-                  <mat-option *ngFor="let amortPeriod of amortPeriods" [value]="amortPeriod">
+                <mat-select formControlName="mortgageAmort" style="max-width:300px;border:none" panelClass="panel-class" required>
+                  <mat-option *ngFor="let amortPeriod of amortPeriods" style="font-size: 12px; font-family: 'Calibri';" [value]="amortPeriod">
                     {{amortPeriod}}
                   </mat-option>
                 </mat-select>
@@ -48,26 +48,28 @@
               </div>
               <div class="row">
                 <img src = '../assets/images/mortgage-freq.png' width ="30px" height="30px"/>
-                <mat-form-field class="col" >
-                  <input matInput placeholder="{{ 'form.mortgage-frequency' | translate }}"
-                         formControlName="mortgageFreq">
-                  <mat-error *ngIf="form.get('mortgageFreq').invalid">
-                    {{ 'form.mortgage-frequency-error'| translate }}
-                  </mat-error>
+                <mat-form-field class="input-row"  appearance="fill">
+                  <mat-label>{{ 'form.mortgage-frequency' | translate }}</mat-label>
+                  <mat-select formControlName="mortgageFreq" panelClass="panel-class" required>
+                    <mat-option *ngFor="let payFreq of amortPayFreq" style="font-size: 12px; font-family: 'Calibri';" [value]="payFreq">
+                      {{payFreq}}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
               <div class="row">
                 <img src = '../assets/images/mortgage-term.png' width ="25px" height="30px"/>
-                <mat-form-field class="col" >
-                  <input matInput placeholder="{{ 'form.mortgage-term' | translate }}"
-                         formControlName="mortgageTerm" minLength="6" maxLength="6">
-                  <mat-error *ngIf="form.get('mortgageTerm').invalid">
-                    {{ 'form.mortgage-term-error'| translate }}
-                  </mat-error>
+                <mat-form-field class="input-row"  appearance="fill">
+                  <mat-label>{{ 'form.mortgage-term' | translate }}</mat-label>
+                  <mat-select formControlName="mortgageTerm" panelClass="panel-class" required>
+                    <mat-option *ngFor="let payTerm of amortPayTerm"  style="font-size: 12px; font-family: 'Calibri';" [value]="payTerm">
+                      {{payTerm}}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
               <div class="row buttons d-flex justify-content-between pad">
-                <button class="save" mat-raised-button color="primary" (click)="stepper.next()">
+                <button class="save" mat-raised-button color="primary" (click)="save()">
                   <mat-icon>send</mat-icon>{{ 'form.calculate' | translate }}
                 </button>
                 <button type="reset"  class="reset" mat-raised-button color="warn" (click)="reset()">
@@ -80,6 +82,10 @@
       </form>
     </mat-step>
     <mat-step state="done">
-      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel>Payment Schedule</ng-template>
+      <div *ngIf="showPaymentTable">
+      <app-paymenttable></app-paymenttable>
+      </div>
     </mat-step>
   </mat-horizontal-stepper>
+</div>

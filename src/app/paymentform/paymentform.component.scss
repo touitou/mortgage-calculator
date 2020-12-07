@@ -13,6 +13,12 @@ mat-error ::ng-deep{
     margin: 10px;
 }
 
+::ng-deep .panel-class {
+  background: #cce0ff;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    font-size: 8px;
+}
+
 
 .save{
     background-color: #c2f0c2;
@@ -30,9 +36,3 @@ mat-error ::ng-deep{
  ::ng-deep .mat-step-header .mat-step-icon-selected {
     background-color: #3385ff;
  }
-
-
-.cdk-overlay-container .cdk-overlay-pane{
-   margin-top: 7%;
-   background-color: #3385ff;
-}

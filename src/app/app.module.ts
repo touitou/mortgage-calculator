@@ -14,16 +14,21 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import {CdkTableModule} from '@angular/cdk/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { PaymentFormComponent } from './paymentform/paymentform.component';
+import { PaymenttableComponent } from './paymenttable/paymenttable.component';
+import { StoreModule } from '@ngrx/store';
+import { PaymentService } from './paymentservice.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    PaymenttableComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,7 @@ import { PaymentFormComponent } from './paymentform/paymentform.component';
     MatCardModule,
     MatSelectModule,
     MatTableModule,
+    CdkTableModule,
     MatDialogModule,
     MatIconModule,
     HttpClientModule,
@@ -50,8 +56,9 @@ import { PaymentFormComponent } from './paymentform/paymentform.component';
               },
               isolate: true
             }),
+     StoreModule.forRoot({}, {}),
   ],
-  providers: [],
+  providers: [PaymentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
