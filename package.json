@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json --host 0.0.0.0 --disable-host-check",
+    "startdo": "ng serve --proxy-config proxy.conf.json --host 0.0.0.0 --disable-host-check --configuration=development",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

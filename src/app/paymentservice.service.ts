@@ -5,6 +5,8 @@ import {Observable,throwError, of, empty} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import { retry, catchError } from 'rxjs/operators'
 import * as moment from 'moment';
+import {environment} from 'src/environments/environment'
+
 
 @Injectable()
 export class PaymentService  {
@@ -55,7 +57,7 @@ export class PaymentService  {
        console.log("DATA : " + this.data.mortgageAmount);
 
 
-       return this.http.post('http://localhost:4200/api/GetMortgageRepaymentsArray', params,{headers})
+       return this.http.post(`${environment.apiurl}/GetMortgageRepaymentsArray`, params,{headers})
        .pipe(
          tap((response: any) => {
          console.log(response);
@@ -99,7 +101,7 @@ export class PaymentService  {
 
            console.log("DATA : " + this.data.mortgageAmount);
 
-           return this.http.post('http://localhost:4200/api/CalculMntVersement', params,{headers})
+           return this.http.post(`${environment.apiurl}/CalculMntVersement`, params,{headers})
            .pipe(
              tap((response: any) => {
              console.log(response);
