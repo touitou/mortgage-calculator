@@ -58,7 +58,7 @@
                   "maximumWarning": "6kb"
                 }
               ]
-            },"development": {
+            },"dev": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
