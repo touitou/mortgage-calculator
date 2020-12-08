@@ -80,8 +80,8 @@ export class PaymentService  {
 
 
        let params  = {
-           "CalculMiseDeFondVersement" : Number(this.data.mortgageAmount),
-           "CalculEmpruntVersement":0,
+           "CalculMiseDeFondVersement" :0,
+           "CalculEmpruntVersement": Number(this.data.mortgageAmount),
            "CalculAmortVersement":Number(this.data.mortgageAmort.substring(0,2)),
            "CalculTauxVersement":Number(this.data.mortgageRatePerPeriod),
            "CalculFreqVersement":Number(frequency),
