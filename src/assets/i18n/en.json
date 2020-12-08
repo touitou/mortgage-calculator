@@ -1,7 +1,7 @@
 {
   "form.mortgage-amount": "Mortgage Amount",
   "form.mortgage-amount-error": "Please provide a valid amount",
-  "form.mortgage-rate": "Interest Rate per Period",
+  "form.mortgage-rate": "Interest Rate per Year",
   "form.mortgage-rate-error": "Please provide a valid rate",
   "form.mortgage-amortization": "Amortization Period",
   "form.mortgage-amortization-error": "Please provide a valid period",

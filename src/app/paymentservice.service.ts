@@ -31,19 +31,25 @@ export class PaymentService  {
     this.data = undefined;
   }
 
-    mortgageRatePerPeriod: number;
-    mortgageAmort: string;
-    mortgageNbRepayments: string;
-    mortgageRepayEvery: string;
 
-  calculateDownPayments(form :PaymentForm): Observable<any> {
+
+  calculateDownPayments(): Observable<any> {
+//["weekly","bi-weekly","bi-monthly","monthly"]
+
+
+
+  let frequency =12;
+  if ( this.data.mortgageRepayEvery=="weekly")  frequency = 52;
+   if ( this.data.mortgageRepayEvery=="bi-weekly")  frequency = 26;
+   if ( this.data.mortgageRepayEvery=="bi-monthly") frequency = 24;
+
 
   let params  = {
-      "CalculMiseDeFondVersement" : 10000,
-      "CalculEmpruntVersement":40000,
-      "CalculAmortVersement":20,
-      "CalculTauxVersement":3,
-      "CalculFreqVersement":12,
+      "CalculMiseDeFondVersement" : this.data.mortgageAmount,
+      "CalculEmpruntVersement":0,
+      "CalculAmortVersement":this.data.mortgageAmort,
+      "CalculTauxVersement":this.data.mortgageRatePerPeriod,
+      "CalculFreqVersement":frequency,
       "TaxeProprieteVersement":0,
       "TaxeEvalMunicipaleTotale":0,
       "TaxeCityId":"",
@@ -58,9 +64,27 @@ export class PaymentService  {
       .append('Content-Type', 'application/json')
       .append('Accept', 'application/json')
       .append('Access-Control-Allow-Origin', 'http://localhost:4200')
-      .append('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT')
+      .append('Access-Control-Allow-Methods', '*')
 
-      console.log("DATA : " + form.mortgageAmount);
+      console.log("DATA : " + this.data.mortgageAmount);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       return this.http.post('https://www.centris.ca/Calculator/CalculMntVersement', params,{headers})
       .pipe(
         tap((response: any) => {

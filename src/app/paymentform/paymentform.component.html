@@ -46,22 +46,12 @@
                 </mat-select>
                 </mat-form-field>
               </div>
-              <div class="row">
-                <img src = '../assets/images/mortgage-freq.png' width ="30px" height="30px"/>
-                <mat-form-field class="input-row"  appearance="fill">
-                  <mat-label>{{ 'form.mortgage-nbRepayments' | translate }}</mat-label>
-                  <mat-select formControlName="mortgageNbRepayments" panelClass="panel-class" required>
-                    <mat-option *ngFor="let nbRepay of nbRepayments" style="font-size: 12px; font-family: 'Calibri';" [value]="nbRepay">
-                      {{nbRepay}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+
               <div class="row">
                 <img src = '../assets/images/mortgage-term.png' width ="25px" height="30px"/>
                 <mat-form-field class="input-row"  appearance="fill">
                   <mat-label>{{ 'form.mortgage-repaymentEvery' | translate }}</mat-label>
-                  <mat-select formControlName="mortgageRepaymentEvery" panelClass="panel-class" required>
+                  <mat-select formControlName="mortgageRepayEvery" panelClass="panel-class" required>
                     <mat-option *ngFor="let payEvery of repaymentEvery"  style="font-size: 12px; font-family: 'Calibri';" [value]="payEvery">
                       {{payEvery}}
                     </mat-option>

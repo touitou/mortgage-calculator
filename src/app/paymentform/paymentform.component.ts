@@ -25,22 +25,22 @@ export class PaymentFormComponent implements OnInit {
     mortgageAmount: ["", [Validators.required,Validators.pattern('^\\d*$')]],
     mortgageRatePerPeriod: ["", [Validators.required,Validators.pattern('^\\d*$')]],
     mortgageAmort: ["", [Validators.required]],
-    mortgageNbRepayments: ["", [Validators.required]],
-    mortgageRepaymentEvery: ["", [Validators.required]]
+    mortgageRepayEvery: ["", [Validators.required]]
   });
 
   amortPeriods = [];
-    nbRepayments = [];
-        repaymentEvery= [];
-          showPaymentTable = false;
+  repaymentEvery= ["weekly","bi-weekly","bi-monthly","monthly"];
+  showPaymentTable = false;
+
   constructor(private paymentService: PaymentService,private fb: FormBuilder,  private translate: TranslateService) {}
 
   ngOnInit() {
     for (let i = 1; i <= 30; i++) {
       this.amortPeriods.push(i + (i == 1 ? " YEAR" : " YEARS"));
-      this.repaymentEvery.push(i);
-      this.nbRepayments.push(i);
-    }
+   }
+
+
+
   }
   submit(stepper : MatStepper) {
     if (this.form.valid) {
