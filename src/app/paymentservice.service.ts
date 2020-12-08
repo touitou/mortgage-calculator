@@ -37,14 +37,14 @@ export class PaymentService  {
  //["weekly","bi-weekly","bi-monthly","monthly"]
 
    let factor = 1 ;
-   if ( this.data.mortgageRepayEvery=="weekly")  frequency = 4.33;
-   if ( this.data.mortgageRepayEvery=="bi-weekly")  frequency = 2.17;
-   if ( this.data.mortgageRepayEvery=="bi-monthly") frequency = 2;
+   if ( this.data.mortgageRepayEvery=="weekly")  factor = 4.33;
+   if ( this.data.mortgageRepayEvery=="bi-weekly")  factor = 2.17;
+   if ( this.data.mortgageRepayEvery=="bi-monthly") factor = 2;
 
    let params  = {
-          "taux": this.data.mortgageRatePerPeriod/frequency,
-          "freq": frequency,
-          "amort": this.data.mortgageAmort*frequency,
+          "taux": this.data.mortgageRatePerPeriod/factor,
+          "freq": 12,
+          "amort": this.data.mortgageAmort*factor,
           "emprunt": this.data.mortgageAmount
       }
 
