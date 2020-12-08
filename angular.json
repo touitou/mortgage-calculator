@@ -58,7 +58,8 @@
                   "maximumWarning": "6kb"
                 }
               ]
-            },"dev": {
+            },
+            "dev": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -78,6 +79,9 @@
           "configurations": {
             "production": {
               "browserTarget": "mortgage-calculator:build:production"
+            },
+            "dev": {
+              "browserTarget": "mortgage-calculator:build:dev"
             }
           }
         },
