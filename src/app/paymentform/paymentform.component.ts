@@ -23,28 +23,24 @@ export class PaymentFormComponent implements OnInit {
 @ViewChild('stepper') stepper;
   form = this.fb.group({
     mortgageAmount: ["", [Validators.required,Validators.pattern('^\\d*$')]],
-    mortgageRate: ["", [Validators.required,Validators.pattern('^\\d*$')]],
+    mortgageRatePerPeriod: ["", [Validators.required,Validators.pattern('^\\d*$')]],
     mortgageAmort: ["", [Validators.required]],
-    mortgageFreq: ["", [Validators.required]],
-    mortgageTerm: ["", [Validators.required]]
+    mortgageNbRepayments: ["", [Validators.required]],
+    mortgageRepaymentEvery: ["", [Validators.required]]
   });
 
   amortPeriods = [];
-    amortPayFreq = [];
-        amortPayTerm= [];
+    nbRepayments = [];
+        repaymentEvery= [];
           showPaymentTable = false;
   constructor(private paymentService: PaymentService,private fb: FormBuilder,  private translate: TranslateService) {}
 
   ngOnInit() {
     for (let i = 1; i <= 30; i++) {
       this.amortPeriods.push(i + (i == 1 ? " YEAR" : " YEARS"));
-       if (i <=10)
-                  this.amortPayTerm.push(i + (i == 1 ? " YEAR" : " YEARS"));
+      this.repaymentEvery.push(i);
+      this.nbRepayments.push(i);
     }
-        this.amortPayFreq.push("Weekly");
-                this.amortPayFreq.push("Bi-Weekly");
-                        this.amortPayFreq.push("Monthly");
-                                this.amortPayFreq.push("Semi-Monthly");
   }
   submit(stepper : MatStepper) {
     if (this.form.valid) {

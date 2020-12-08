@@ -10,25 +10,12 @@
 
 @import 'app/app.component.scss-theme';
 
-
-@mixin custom-components-theme($nb-themes) {
-  @include app-component-theme($nb-themes);
-}
-
-.default-theme {
-    @include angular-material-theme($light-theme);
-    @include custom-components-theme($light-theme);
-}
-
-.light-theme {
-  @include angular-material-theme($light-theme);
-  @include custom-components-theme($light-theme);
-}
-
 .custom-dialog-container .mat-dialog-container {
   font-size:'16px';
   font-family:'Display';
   color:'#0f968d';
 }
+
+ @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 

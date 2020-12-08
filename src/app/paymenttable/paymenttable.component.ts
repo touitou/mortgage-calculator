@@ -15,7 +15,7 @@ export class PaymenttableComponent implements OnInit {
   constructor(private paymentService: PaymentService) {
   }
 
-   PMT(ir:number, np:number, pv:number, fv:number, type:number) {
+   //PMT(ir:number, np:number, pv:number, fv:number, type:number) {
      /*
       * ir   - interest rate per month
       * np   - number of periods (months)
@@ -25,7 +25,7 @@ export class PaymenttableComponent implements OnInit {
       *        0: end of the period, e.g. end of month (default)
       *        1: beginning of period
       */
-     var pmt:number;
+    /*var pmt:number;
      var pvif:number;
 
      fv || (fv = 0);
@@ -41,12 +41,15 @@ export class PaymenttableComponent implements OnInit {
        pmt /= (1 + ir);
 
      return pmt;
-   }
+   }*/
 
   ngOnInit() {
      var data = this.paymentService.getData();
      console.log("MORTGAGE AMOUNT : " + data.mortgageAmount);
-     var monthlyInterestRate = +((Math.pow(1 + ((data.mortgageRate / 100) / 2), 1 / 6) - 1)).toFixed(6);
+     this.paymentService.calculateDownPayments(data).subscribe(resp => {
+console.log(resp);
+                                                                        })
+     /*var monthlyInterestRate = +((Math.pow(1 + ((data.mortgageRate / 100) / 2), 1 / 6) - 1)).toFixed(6);
      var mortgageAmortizationInMonths = Number(data.mortgageAmort.substring(0,2)) /12;
      console.log("MORTGAGE :" + data.mortgageAmort);
      var mortgagePayment = -this.PMT(monthlyInterestRate, mortgageAmortizationInMonths, data.mortgageAmount, 0, 0);
@@ -155,6 +158,6 @@ console.log("TATA");
 
            }
             this.dataSource = new MatTableDataSource<any>(this.elements);
-            console.log("ELEMENT :" + this.elements[0] );
+            console.log("ELEMENT :" + this.elements[0] );*/
   }
 }

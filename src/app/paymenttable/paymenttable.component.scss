@@ -3,3 +3,11 @@
     overflow: auto;
     max-height: 500px;
 }
+:host ::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}
+table {
+  width: 100%;
+   text-align: center !important;
+}
