@@ -1,7 +1,7 @@
 export interface PaymentForm {
   mortgageAmount: number;
   mortgageRatePerPeriod: number;
-  mortgageAmort: number;
+  mortgageAmort: string;
   mortgageRepayEvery: string;
 }
 

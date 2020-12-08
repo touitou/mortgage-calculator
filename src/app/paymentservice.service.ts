@@ -44,20 +44,18 @@ export class PaymentService  {
    let params  = {
           "taux": this.data.mortgageRatePerPeriod/factor,
           "freq": 12,
-          "amort": this.data.mortgageAmort*factor,
+          "amort": Number(this.data.mortgageAmort.substring(0,2))*factor,
           "emprunt": this.data.mortgageAmount
       }
 
        var headers = new HttpHeaders()
        .append('Content-Type', 'application/json')
        .append('Accept', 'application/json')
-       .append('Access-Control-Allow-Origin', 'http://localhost:4200')
-       .append('Access-Control-Allow-Methods', '*')
 
        console.log("DATA : " + this.data.mortgageAmount);
 
 
-       return this.http.post('https://www.centris.ca/Calculator/GetMortgageRepaymentsArray', params,{headers})
+       return this.http.post('http://localhost:4200/api/GetMortgageRepaymentsArray', params,{headers})
        .pipe(
          tap((response: any) => {
          console.log(response);
@@ -80,11 +78,11 @@ export class PaymentService  {
 
 
        let params  = {
-           "CalculMiseDeFondVersement" : this.data.mortgageAmount,
+           "CalculMiseDeFondVersement" : Number(this.data.mortgageAmount),
            "CalculEmpruntVersement":0,
-           "CalculAmortVersement":this.data.mortgageAmort,
-           "CalculTauxVersement":this.data.mortgageRatePerPeriod,
-           "CalculFreqVersement":frequency,
+           "CalculAmortVersement":Number(this.data.mortgageAmort.substring(0,2)),
+           "CalculTauxVersement":Number(this.data.mortgageRatePerPeriod),
+           "CalculFreqVersement":Number(frequency),
            "TaxeProprieteVersement":0,
            "TaxeEvalMunicipaleTotale":0,
            "TaxeCityId":"",
@@ -98,13 +96,10 @@ export class PaymentService  {
            var headers = new HttpHeaders()
            .append('Content-Type', 'application/json')
            .append('Accept', 'application/json')
-           .append('Access-Control-Allow-Origin', 'http://localhost:4200')
-           .append('Access-Control-Allow-Methods', '*')
 
            console.log("DATA : " + this.data.mortgageAmount);
 
-
-           return this.http.post('https://www.centris.ca/Calculator/CalculMntVersement', params,{headers})
+           return this.http.post('http://localhost:4200/api/CalculMntVersement', params,{headers})
            .pipe(
              tap((response: any) => {
              console.log(response);
