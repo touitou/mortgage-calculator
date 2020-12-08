@@ -18,10 +18,28 @@ export class PaymenttableComponent implements OnInit {
 
 
   ngOnInit() {
-
+     var downPayment = 0
+     var totalPayment = 0.0
      this.paymentService.calculateDownPayments().subscribe(resp => {
-     console.log(resp);
-                                                                        })
+     downPayment = Math.round(resp.d.Result);
+     totalPayment = Number(downPayment);
+                      this.paymentService.amortize().subscribe(resp => {
+                           console.log(resp);
+                           resp.d.Result.map( row =>{
+                           console.log ("ROW : " + row.interet);
+                                this.elements.push({
+                                    period: row.mois,
+                                    principalPayment: row.capital,
+                                    interestPayment: row.interet,
+                                    totalPayment: totalPayment,
+                                    endingBalance: row.solde
+                                  });
+                                  totalPayment+= downPayment;
+                            }
+                            );
+                              this.dataSource = new MatTableDataSource<any>(this.elements);
+                            });
+  });
 
-  }
+}
 }
