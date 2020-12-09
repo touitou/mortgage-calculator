@@ -15,6 +15,7 @@ export class PaymentTableComponent implements OnInit {
   elements:any = [];
   dataBalance:any = [];
   periods:any = [];
+  principals :any = [];
   dataTotalInterest:any = [];
   constructor(private paymentService: PaymentService,private dialog :MatDialog) {
   }
@@ -28,7 +29,7 @@ ngOnInit() {
           let dialogRef = this.dialog.open(PaymentChartComponent, {
             height: '400px',
             width: '600px',
-            data: { periods: this.periods, dataTotalInterest:this.dataTotalInterest,dataBalance:this.dataBalance},
+            data: { periods: this.periods, dataTotalInterest:this.dataTotalInterest,dataBalance:this.dataBalance, principal: this.principals},
           });
        //chartChild.refresh(this.periods,this.dataTotalInterest,this.dataBalance);
     }
@@ -43,8 +44,9 @@ refresh(){
                            resp.d.Result.map( row =>{
                            console.log ("ROW : " + row.interet);
                               this.periods.push(row.mois);
-                              this.dataTotalInterest.push(row.interet.substring(0,row.interet.length -1));
-                              this.dataBalance.push(row.solde.substring(0,row.solde.length -1));
+                              this.dataTotalInterest.push(row.interet.replace("$",""));
+                              this.principals.push(row.capital.replace("$",""));
+                              this.dataBalance.push(row.solde.replace("$","").replace(/\s/g, ""));
                                 this.elements.push({
                                     period: row.mois,
                                     principalPayment: row.capital,

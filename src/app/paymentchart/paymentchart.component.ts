@@ -16,10 +16,14 @@ export class PaymentChartComponent implements OnInit {
     lineChartPlugins;
     lineChartType;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {periods:any,dataTotalInterest:any,dataBalance:any}){
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {periods:any,dataTotalInterest:any,dataBalance:any,principal: any}){
    console.log("HELLO PERIOD : " + this.data.periods);
+      console.log("HELLO INTEREST : " + this.data.dataTotalInterest);
+            console.log("HELLO PRINCIPAL : " + this.data.principal);
+                        console.log("HELLO BALANCE : " + this.data.dataBalance);
         this.lineChartData= [
             { data: this.data.dataTotalInterest, label: 'Total Interest' },
+            { data: this.data.principal, label: 'Principal' },
             { data: this.data.dataBalance, label: 'Balance' }
           ];
 
