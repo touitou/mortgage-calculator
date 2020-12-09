@@ -1,11 +1,14 @@
 
 <div class="container" rtl>
-  <mat-horizontal-stepper linear #stepper>
+  <mat-horizontal-stepper linear #stepper (selectionChange)="setIndex($event)">
     <ng-template matStepperIcon="form">
       <mat-icon>format_align_center</mat-icon>
     </ng-template>
-    <ng-template matStepperIcon="done">
-      <mat-icon>done_all</mat-icon>
+    <ng-template matStepperIcon="scheduleTable">
+      <mat-icon>table_chart</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="chart">
+      <mat-icon>bar_chart</mat-icon>
     </ng-template>
     <mat-step label="Fill out your informations" state="form">
 <!--      <ng-container *ngIf="formValueChanges$ | async as updatedForm">
@@ -71,7 +74,7 @@
         </div>
       </form>
     </mat-step>
-    <mat-step state="done">
+    <mat-step state="scheduleTable">
       <ng-template matStepLabel>Payment Schedule</ng-template>
       <div *ngIf="showPaymentTable">
       <app-paymenttable></app-paymenttable>

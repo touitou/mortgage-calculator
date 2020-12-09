@@ -1,23 +1,38 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,Input} from '@angular/core';
 import { PaymentService } from '../paymentservice.service';
 import { MatTableDataSource } from "@angular/material/table";
-import * as moment from 'moment';
+import { PaymentChartComponent } from '../paymentchart/paymentchart.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-paymenttable',
   templateUrl: './paymenttable.component.html',
   styleUrls: ['./paymenttable.component.scss']
 })
-export class PaymenttableComponent implements OnInit {
+export class PaymentTableComponent implements OnInit {
   displayedColumns: string[] = ['period', 'principalPayment', 'interestPayment', 'totalPayment', 'endingBalance'];
-  dataSource:MatTableDataSource<any>;
+  dataSource = new MatTableDataSource<any>();
   elements:any = [];
-  constructor(private paymentService: PaymentService) {
+  dataBalance:any = [];
+  periods:any = [];
+  dataTotalInterest:any = [];
+  constructor(private paymentService: PaymentService,private dialog :MatDialog) {
   }
 
+ngOnInit() {
+        this.refresh();
+    }
 
-
-  ngOnInit() {
+    viewChart(){
+       console.log("PERIODS :" + this.periods);
+          let dialogRef = this.dialog.open(PaymentChartComponent, {
+            height: '400px',
+            width: '600px',
+            data: { periods: this.periods, dataTotalInterest:this.dataTotalInterest,dataBalance:this.dataBalance},
+          });
+       //chartChild.refresh(this.periods,this.dataTotalInterest,this.dataBalance);
+    }
+refresh(){
      var downPayment = 0
      var totalPayment = 0.0
      this.paymentService.calculateDownPayments().subscribe(resp => {
@@ -27,6 +42,9 @@ export class PaymenttableComponent implements OnInit {
                            console.log(resp);
                            resp.d.Result.map( row =>{
                            console.log ("ROW : " + row.interet);
+                              this.periods.push(row.mois);
+                              this.dataTotalInterest.push(row.interet.substring(0,row.interet.length -1));
+                              this.dataBalance.push(row.solde.substring(0,row.solde.length -1));
                                 this.elements.push({
                                     period: row.mois,
                                     principalPayment: row.capital,
@@ -37,9 +55,9 @@ export class PaymenttableComponent implements OnInit {
                                   totalPayment+= downPayment;
                             }
                             );
-                              this.dataSource = new MatTableDataSource<any>(this.elements);
+                              this.dataSource=this.elements;
                             });
   });
-
 }
+
 }

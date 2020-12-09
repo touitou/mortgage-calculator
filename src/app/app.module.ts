@@ -15,20 +15,24 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {CdkTableModule} from '@angular/cdk/table';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { ChartsModule } from 'ng2-charts';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { PaymentFormComponent } from './paymentform/paymentform.component';
-import { PaymenttableComponent } from './paymenttable/paymenttable.component';
+import { PaymentTableComponent } from './paymenttable/paymenttable.component';
 import { StoreModule } from '@ngrx/store';
 import { PaymentService } from './paymentservice.service';
+import { PaymentChartComponent } from './paymentchart/paymentchart.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PaymentFormComponent,
-    PaymenttableComponent
+    PaymentTableComponent,
+    PaymentChartComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,8 @@ import { PaymentService } from './paymentservice.service';
     MatTableModule,
     CdkTableModule,
     MatDialogModule,
+    ChartsModule,
+    MatDialogModule,
     MatIconModule,
     HttpClientModule,
      TranslateModule.forRoot({
@@ -58,7 +64,7 @@ import { PaymentService } from './paymentservice.service';
             }),
      StoreModule.forRoot({}, {}),
   ],
-  providers: [PaymentService],
+  providers: [PaymentService,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

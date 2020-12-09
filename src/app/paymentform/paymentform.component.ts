@@ -21,13 +21,22 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class PaymentFormComponent implements OnInit {
 @ViewChild('stepper') stepper;
+
+selectedIndex: number = 0;
+
+setIndex(event) {
+// TODO Call OnChanges on the PaymentTableComponent
+if (event.selectedIndex == 0)
+window.location.reload();
+  this.selectedIndex = event.selectedIndex;
+}
+
   form = this.fb.group({
     mortgageAmount: ["", [Validators.required,Validators.pattern('^\\d*$')]],
     mortgageRatePerPeriod: ["", [Validators.required,Validators.pattern('^\\d*$')]],
     mortgageAmort: ["", [Validators.required]],
     mortgageRepayEvery: ["", [Validators.required]]
   });
-
   amortPeriods = [];
   repaymentEvery= ["weekly","bi-weekly","bi-monthly","monthly"];
   showPaymentTable = false;
@@ -38,10 +47,9 @@ export class PaymentFormComponent implements OnInit {
     for (let i = 1; i <= 30; i++) {
       this.amortPeriods.push(i + (i == 1 ? " YEAR" : " YEARS"));
    }
-
-
-
   }
+
+
   submit(stepper : MatStepper) {
     if (this.form.valid) {
       this.save();
