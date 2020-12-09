@@ -64,7 +64,7 @@ import { PaymentChartComponent } from './paymentchart/paymentchart.component';
             }),
      StoreModule.forRoot({}, {}),
   ],
-  providers: [PaymentService,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [PaymentService,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
