@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {CdkTableModule} from '@angular/cdk/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { ChartsModule } from 'ng2-charts';
 import { MatIconModule } from '@angular/material/icon';
@@ -49,6 +50,7 @@ import { PaymentChartComponent } from './paymentchart/paymentchart.component';
     MatSelectModule,
     MatTableModule,
     CdkTableModule,
+    MatPaginatorModule,
     MatDialogModule,
     ChartsModule,
     MatDialogModule,

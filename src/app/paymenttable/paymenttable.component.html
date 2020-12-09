@@ -3,6 +3,7 @@
     View Chart
     <mat-icon>insights</mat-icon>
   </button>
+  <mat-paginator [pageSizeOptions]="[12, 24, 36, 48, 60, 72, 84, 96]" showFirstLastButtons></mat-paginator>
 <table mat-table [dataSource]="dataSource">
 
   <!-- Period Column -->

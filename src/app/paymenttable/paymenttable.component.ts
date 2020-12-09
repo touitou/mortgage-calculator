@@ -1,8 +1,9 @@
-import { Component, OnInit,Input} from '@angular/core';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import { PaymentService } from '../paymentservice.service';
 import { MatTableDataSource } from "@angular/material/table";
 import { PaymentChartComponent } from '../paymentchart/paymentchart.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatPaginator,PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-paymenttable',
@@ -10,8 +11,9 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
   styleUrls: ['./paymenttable.component.scss']
 })
 export class PaymentTableComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['period', 'principalPayment', 'interestPayment', 'totalPayment', 'endingBalance'];
-  dataSource = new MatTableDataSource<any>();
+  dataSource;
   elements:any = [];
   dataBalance:any = [];
   periods:any = [];
@@ -57,7 +59,8 @@ refresh(){
                                   totalPayment+= downPayment;
                             }
                             );
-                              this.dataSource=this.elements;
+                              this.dataSource= new MatTableDataSource<any>(this.elements);
+                              this.dataSource.paginator = this.paginator;
                             });
   });
 }
